@@ -1,13 +1,38 @@
 <div>
-    <section class="py-1 bg-blueGray-50">
-        <div x-data="{ open: false }" class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-24">
-            <div  x-on:click="open = ! open"
-                class="p-2 pl-5 pr-5 bg-transparent border-2 border-indigo-500 text-indigo-500 text-lg rounded-lg transition-colors duration-700 transform hover:bg-indigo-500 hover:text-gray-100 focus:border-4 focus:border-indigo-300">
-                <button wire:click.prevent='createBook'>
-                    Create Book
-                </button>
+    <section x-show="tab === 'books' " class="py-1 bg-blueGray-50">
+        <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-24">
+
+            <div class="mb-8 p-4 shadow-md rounded-md text-left">
+                <div class="text-3xl text-center">
+                    Enter Book Details
+                </div>
+                <form wire:submit.prevent='saveBook'>
+                    <label class="block">
+                        <span class="text-gray-700">Name</span>
+                        <input class="form-input mt-1 block w-full px-2 py-4 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none" placeholder="Jane Doe" />
+                    </label>
+                    <label class="block">
+                        <span class="text-gray-700">Name</span>
+                        <input class="form-input mt-1 block w-full px-2 py-4 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none" placeholder="Jane Doe" />
+                    </label>
+                    <label class="block">
+                        <span class="text-gray-700">Name</span>
+                        <input class="form-input mt-1 block w-full px-2 py-4 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none" placeholder="Jane Doe" />
+                    </label>
+                    <label class="block">
+                        <span class="text-gray-700">Name</span>
+                        <input class="form-input mt-1 block w-full px-2 py-4 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none" placeholder="Jane Doe" />
+                    </label>
+                    <label class="block">
+                        <span class="text-gray-700">Name</span>
+                        <input class="form-input mt-1 block w-full px-2 py-4 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none" placeholder="Jane Doe" />
+                    </label>
+                    <button class="bg-blue-400 px-8 py-4 rounded hover:bg-blue-300 mt-8x">
+                        Save
+                    </button>
+                </form>
             </div>
-            <div x-show="open" x-on:click.outside="open = false" class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
                 <div class="flex flex-row justify-between items-center px-12 py-6 bg-blue-600 text-white rounded-t-lg">
                     <div class="text-2xl">
                         Book Informtion
@@ -88,39 +113,8 @@
             </div>
 
 
-            <!-- Required form plugin -->
-
-
-            <div class="p-4 shadow-md rounded-md text-left">
-                <div class="text-3xl text-center">
-                    Enter Book Details
-                </div>
-                <form wire:submit.prevent='saveBook'>
-                    <label class="block">
-                        <span class="text-gray-700">Name</span>
-                        <input class="form-input mt-1 block w-full px-2 py-4 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none" placeholder="Jane Doe" />
-                    </label>
-                    <label class="block">
-                        <span class="text-gray-700">Name</span>
-                        <input class="form-input mt-1 block w-full px-2 py-4 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none" placeholder="Jane Doe" />
-                    </label>
-                    <label class="block">
-                        <span class="text-gray-700">Name</span>
-                        <input class="form-input mt-1 block w-full px-2 py-4 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none" placeholder="Jane Doe" />
-                    </label>
-                    <label class="block">
-                        <span class="text-gray-700">Name</span>
-                        <input class="form-input mt-1 block w-full px-2 py-4 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none" placeholder="Jane Doe" />
-                    </label>
-                    <label class="block">
-                        <span class="text-gray-700">Name</span>
-                        <input class="form-input mt-1 block w-full px-2 py-4 border border-blue-300 rounded focus:ring-2 focus:ring-blue-600 focus:outline-none" placeholder="Jane Doe" />
-                    </label>
-                    <button class="bg-blue-400 px-8 py-4 rounded hover:bg-blue-300 mt-8x">
-                        Save
-                    </button>
-                </form>
-            </div>
+            {{-- Create Book --}}
+            
 
         </div>
     </section>

@@ -11,6 +11,8 @@ class Member extends Model
 {
     use HasFactory;
 
+    protected $table = "members";
+
     protected $fillable = [
         'fname', 'lname', 'join_date', 'address', 'phoneNo', 'email'
     ];
@@ -23,5 +25,10 @@ class Member extends Model
     public function loan(): HasOne
     {
         return $this->hasOne(Loan::class);
+    }
+
+    public function getFullNameAttribute(): String
+    {
+        return "{$this->fname} {$this->lname}";
     }
 }

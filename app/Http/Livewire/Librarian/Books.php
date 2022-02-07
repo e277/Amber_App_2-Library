@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Librarian;
 use App\Models\Book;
 use Livewire\Component;
 use Livewire\WithPagination;
-
 class Books extends Component
 {
     use WithPagination;

@@ -29,16 +29,16 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'member_id' => 'required',
-            'title' => 'required',
-            'author' => 'required',
-            'isbn' => 'required',
-            'publication_date' => 'required',
-            'amount_owned' => 'required'
+            'fname' => 'required',
+            'lname' => 'required',
+            'join_date' => 'required',
+            'address' => 'required',
+            'phoneNo' => 'required',
+            'email' => 'required'
         ]);
 
         Member::create($request->all());
-        return response()->json('data save', Response::HTTP_OK);
+        return response()->json('Member is saved successfully', Response::HTTP_OK);
     }
 
     /**
@@ -63,12 +63,12 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'member_id' => 'required',
-            'title' => 'required',
-            'author' => 'required',
-            'isbn' => 'required',
-            'publication_date' => 'required',
-            'amount_owned' => 'required'
+            'fname' => 'required',
+            'lname' => 'required',
+            'join_date' => 'required',
+            'address' => 'required',
+            'phoneNo' => 'required',
+            'email' => 'required'
         ]);
 
         $member = Member::findOrFail($id);
@@ -84,18 +84,26 @@ class MemberController extends Controller
      */
     public function destroy($id)
     {
+        Member::destroy($id);
         
+        return response()->json("Member has been deleted successfully", Response::HTTP_OK);
     }
 
     public function searchMember($name)
     {
-        try {
-            Member::select("*", DB::raw("CANCAT(users.fname, ' ', users.lname) as fullName"))->get();
-            $search  = Member::where("fullName", "LIKE", "%".$name."%");
-        } catch (\Throwable $th) {
-            // throw $th;
-            abort(Response::HTTP_NOT_FOUND, "MEMBER NOT FOUND");
-        }
-        return response()->json($search, Response::HTTP_OK);
+    
+        // $full_name = Member::select(["id", DB::raw("CANCAT('members.fname', ' ', 'members.lname') as 'full_name'")])->pluck('full_name');
+        //                     // ->where("full_name", "LIKE", "%".$name."%")->get();
+        //                     return $full_name;
+        //                     dd($full_name);
+
+
+        
+        $search = "%{$name}%";
+        $name = Member::select("[fname, lname]", DB::raw('CONCAT(members.fname, " ", members.lname) as full_name'))->get();
+        $full_name = Member::where($name, 'like', $search)->get();
+
+        return response()->json($full_name, Response::HTTP_OK);
+
     }
 }

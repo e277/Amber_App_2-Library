@@ -29,10 +29,10 @@
                 <span class="ml-3 text-xl">Stony Hill Library</span>
             </a>
             @auth
-                <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-                    <a href="#" class="modal-open mr-5 hover:text-gray-900">Book</a>
-                    <a href="#" class="mr-5 hover:text-gray-900">Member</a>
-                    <a href="#" class="mr-5 hover:text-gray-900">Loan</a>
+                <nav x-data="{ tab: 'books' }" class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+                    <a :class="{ 'active': tab === 'books' }" x-on:click.prevent="tab = 'books' " href="#" class="modal-open mr-5 hover:text-gray-900">Book</a>
+                    <a :class="{ 'active': tab === 'loans' }" x-on:click.prevent="tab = 'loans' " href="#" class="mr-5 hover:text-gray-900">Member</a>
+                    <a :class="{ 'active': tab === 'members' }" x-on:click.prevent="tab = 'members' " href="#" class="mr-5 hover:text-gray-900">Loan</a>
                 </nav>
                 <livewire:logout-user />
             @endauth
