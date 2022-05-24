@@ -18,10 +18,10 @@ class LoanController extends Controller
     public function index()
     {
         $borrower = Loan::join('books', 'books.id', '=', 'loans.book_id')
-                        ->join('members', 'members.id', '=', 'loans.member_id')
-                        ->select(['fname', 'lname'])
-                        ->get();
-                        // dd($borrower);
+            ->join('members', 'members.id', '=', 'loans.member_id')
+            ->select(['fname', 'lname'])
+            ->get();
+        // dd($borrower);
         return response()->json($borrower, Response::HTTP_OK);
     }
 
@@ -45,6 +45,7 @@ class LoanController extends Controller
     public function show($id)
     {
         $member = Member::findOrFail($id);
+
         return response()->json($member, Response::HTTP_OK);
     }
 

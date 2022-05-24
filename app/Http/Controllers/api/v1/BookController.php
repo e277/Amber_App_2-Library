@@ -38,6 +38,7 @@ class BookController extends Controller
         ]);
 
         Book::create($request->all());
+
         return response()->json('Book has been saved succesfully', Response::HTTP_OK);
     }
 
@@ -50,6 +51,7 @@ class BookController extends Controller
     public function show($id)
     {
         $book = Book::findOrFail($id);
+
         return response()->json($book, Response::HTTP_OK);
     }
 
@@ -73,8 +75,8 @@ class BookController extends Controller
 
         $book = Book::findOrFail($id);
         $book->update($request->all());
-        return response()->json($book, Response::HTTP_OK);
 
+        return response()->json($book, Response::HTTP_OK);
     }
 
     /**
@@ -87,15 +89,14 @@ class BookController extends Controller
     {
         $book = Book::find($id);
         $book->delete();
-        
+
         return response()->json("Book has been successfully deleted", Response::HTTP_OK);
     }
 
     public function searchBook($title)
-    { 
+    {
         try {
-            $search = Book::where("title", "LIKE", "%".$title."%")->get();
-
+            $search = Book::where("title", "LIKE", "%" . $title . "%")->get();
         } catch (ModelNotFoundException $th) {
             return response()->json("I don't know of that book", Response::HTTP_NOT_FOUND);
         }

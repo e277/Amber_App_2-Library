@@ -38,6 +38,7 @@ class MemberController extends Controller
         ]);
 
         Member::create($request->all());
+
         return response()->json('Member is saved successfully', Response::HTTP_OK);
     }
 
@@ -50,6 +51,7 @@ class MemberController extends Controller
     public function show($id)
     {
         $member = Member::findOrFail($id);
+
         return response()->json($member, Response::HTTP_OK);
     }
 
@@ -73,6 +75,7 @@ class MemberController extends Controller
 
         $member = Member::findOrFail($id);
         $member->update($request->all());
+
         return response()->json($member, Response::HTTP_OK);
     }
 
@@ -85,25 +88,24 @@ class MemberController extends Controller
     public function destroy($id)
     {
         Member::destroy($id);
-        
+
         return response()->json("Member has been deleted successfully", Response::HTTP_OK);
     }
 
     public function searchMember($name)
     {
-    
+
         // $full_name = Member::select(["id", DB::raw("CANCAT('members.fname', ' ', 'members.lname') as 'full_name'")])->pluck('full_name');
         //                     // ->where("full_name", "LIKE", "%".$name."%")->get();
         //                     return $full_name;
         //                     dd($full_name);
 
 
-        
+
         $search = "%{$name}%";
         $name = Member::select("[fname, lname]", DB::raw('CONCAT(members.fname, " ", members.lname) as full_name'))->get();
         $full_name = Member::where($name, 'like', $search)->get();
 
         return response()->json($full_name, Response::HTTP_OK);
-
     }
 }
